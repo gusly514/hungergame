@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
+    <title>Hunger Game</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     
@@ -14,22 +14,20 @@
     <script src="jquery.jSlots.min.js" charset="utf-8"></script>
   </head>
   <body>
+    <div id="content" style="background-color:#b0c4de;">
 
-    
-        <div id="content" style="background-color:#b0c4de;">
+      <div id="slot-machine">
+        <ul class="slot">
+        </ul>
+      </div>
 
-          <div id="slot-machine">
-            <ul class="slot">
-            </ul>
-          </div>
+      <div id="settingAndGo">
+        <button type="button" id="go-button" disabled="disabled">Go!</button>
+        <button type="button" id="settings"><i class="fa fa-cog"></i>Settings</button>
+      </div>
 
-          <div id="settingAndGo">
-            <button type="button" id="go-button" disabled="disabled">Go!</button>
-            <button type="button" id="settings"><i class="fa fa-cog"></i>Settings</button>
-          </div>
-
-          <div id="map-canvas"></div>
-        </div>
+      <div id="map-canvas"></div>
+    </div>
     <footer>info@hungergame.se</footer>
   </body>
 </html>

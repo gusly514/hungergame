@@ -51,7 +51,7 @@
         }
       }
 
-       #slot-machine {
+      #slot-machine {
         overflow: hidden; /* to hide the magic */  
         display: inline-block;
         height: 17px;
