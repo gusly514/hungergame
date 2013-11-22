@@ -1,0 +1,69 @@
+      body {
+        text-align: center;
+      }
+      #map-canvas {
+        height: 250px;
+        width: 100%;
+        position: relative;
+      }
+      #go-button {
+        height: 30px;
+        width: 100px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        margin: 130px 0 0 -50px;
+      }
+      #settings {
+        height: 30px;
+        width: 100px;
+        position: relative;
+        left: 60%;
+        top: 50%;
+        margin: 130px 0 0 -50px;
+      }
+      @media (min-width: 768px) {
+          #content {
+          width:50%;
+          margin: 0 auto;
+          text-align: left;
+          padding: 1em;
+        }
+
+      }
+      @media (max-width: 768px) {
+          #content {
+          width:100%;
+          margin: 0 auto;
+          text-align: left;
+          padding: 1em;
+        }
+      }
+      #footer {
+       position:fixed;
+       left:0px;
+       bottom:0px;
+       height:30px;
+       width:100%;
+    }
+
+    /* IE 6 */
+    * html #footer {
+       position:absolute;
+       top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+    }
+
+       #slot-machine {
+        overflow: hidden; /* to hide the magic */  
+        display: inline-block;
+        height: 17px;
+        width: 100%;
+      }
+      ul {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+      }
+      .slot {
+          float: left;
+      }
