@@ -67,3 +67,17 @@
       .slot {
           float: left;
       }
+      .blurred-text {
+        text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        color: transparent;
+        -webkit-transition: 1000ms ease 0ms;
+        -moz-transition: 1000ms ease 0ms;
+        transition: 1000ms ease 0ms;
+      }
+      .sharpened-text {
+        text-shadow: none;
+        color: black;
+        -webkit-transition: 1000ms ease 0ms;
+        -moz-transition: 1000ms ease 0ms;
+        transition: 1000ms ease 0ms;
+      }
