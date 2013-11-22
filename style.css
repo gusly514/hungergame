@@ -1,5 +1,17 @@
+      html{
+        position: relative;
+        min-height: 100%;
+      }
       body {
+        margin: 0 0 50px;
         text-align: center;
+      }
+      footer {
+        position:absolute;
+        left:0px;
+        bottom:0px;
+        height:30px;
+        width:100%;
       }
       #map-canvas {
         height: 250px;
@@ -29,7 +41,6 @@
           text-align: left;
           padding: 1em;
         }
-
       }
       @media (max-width: 768px) {
           #content {
@@ -39,19 +50,6 @@
           
         }
       }
-      #footer {
-       position:fixed;
-       left:0px;
-       bottom:0px;
-       height:30px;
-       width:100%;
-    }
-
-    /* IE 6 */
-    * html #footer {
-       position:absolute;
-       top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-    }
 
        #slot-machine {
         overflow: hidden; /* to hide the magic */  
