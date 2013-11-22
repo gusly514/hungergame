@@ -33,10 +33,10 @@
       }
       @media (max-width: 768px) {
           #content {
-          width:100%;
+          width:90%;
           margin: 0 auto;
           text-align: left;
-          padding: 1em;
+          
         }
       }
       #footer {
