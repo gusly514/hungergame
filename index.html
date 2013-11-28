@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
+    <title>Hunger Game</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     
@@ -10,6 +10,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
     <script src="hungergame.js"></script>
     <script src="jquery.easing.1.3.js" charset="utf-8"></script>
     <script src="jquery.jSlots.min.js" charset="utf-8"></script>
@@ -30,24 +31,27 @@
       </script>
       </head>
       <body>
-        <div id="content" style="background-color:#b0c4de;">
-
+        <div id="content">
+        <div class="loading loading-show">
+          <i class="fa fa-cutlery"></i>
+        </div>
           <div id="slot-machine">
             <ul class="slot">
             </ul>
           </div>
 
           <div id="settingAndGo">
-            <button type="button" id="go-button" disabled="disabled">Go!</button>
-            <button type="button" id="settings"><i class="fa fa-cog"></i>Settings</button>
-          </div>
-
-          <div id="settings-show" style="background-color:#E8E8E8;">
+            <button type="button" id="go-button" class="button blue" disabled="disabled"><i class="fa fa-cutlery"></i> Go eat!</button>
+            <button type="button" id="settings" class="button grey"><i class="fa fa-cogs"></i> Settings</button>
+            <div id="settings-show" style="background-color:#E8E8E8;">
               <label class="settings-content" for="amount">Min. rating: </label>
               <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" disabled="" />
-            <div id="slider" class="settings-content"></div>
-            <br/>
+              <div id="slider" class="settings-content"></div>
+              <br/>
+            </div>
           </div>
+
+          
 
           <div id="map-canvas"></div>
         </div>

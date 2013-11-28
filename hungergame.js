@@ -45,6 +45,8 @@ function panMap(latLng) {
     map.setZoom(13);
     // enable go button when location is ready and panned to
     $("#go-button").attr("disabled", false);
+    // hide loading
+    $(".loading-show").removeClass("loading-show");
   }, 500);
 }
 
@@ -86,6 +88,7 @@ function initSlotMachine() {
         // remove blurred effect after 5 seconds
         $('.slot li').removeClass("blurred-text").addClass("sharpened-text");
       }, 3000);
+
       // disable go-button
       $("#go-button").attr("disabled", true);
     },    // Function: runs on spin start,
