@@ -39,7 +39,16 @@
         margin: 5px auto;
       }
       .settings-content {
-        margin: 5px 5px 5px 5px;
+        margin: 5px;
+      }
+      div#slider {
+        width: 400px;
+        height: 10px !important;
+      }
+      .ui-slider .ui-slider-handle {
+        width: 18px !important;
+        height: 18px !important;
+        cursor: default;
       }
 
       @media (min-width: 768px) {
