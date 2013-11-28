@@ -80,6 +80,12 @@ function initSlotMachine() {
     spinner : '#go-button',        // CSS Selector: element to bind the start event to
     spinEvent : 'click', // String: event to start slots on this event
     onStart : function () {
+      // add blurred effect on list items
+      $('.slot li').removeClass("sharpened-text").addClass("blurred-text");
+      setTimeout(function () {
+        // remove blurred effect after 5 seconds
+        $('.slot li').removeClass("blurred-text").addClass("sharpened-text");
+      }, 3000);
       // disable go-button
       $("#go-button").attr("disabled", true);
     },    // Function: runs on spin start,
