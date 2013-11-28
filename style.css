@@ -21,21 +21,12 @@
         border-radius: 4px;
         border: white solid 5px;
       }
-      #go-button {
-        height: 30px;
-        width: 100px;
-        position: relative;
-        left: 50%;
-        top: 50%;
-        margin: 130px 0 0 -50px;
-      }
-      #settings {
-        height: 30px;
-        width: 100px;
-        position: relative;
-        left: 60%;
-        top: 50%;
-        margin: 130px 0 0 -50px;
+      #settingAndGo {
+        background: white;
+        border-radius: 4px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 4px;
       }
       #settings-show {
         display: none;
@@ -44,6 +35,25 @@
       }
       .settings-content {
         margin: 5px 5px 5px 5px;
+      }
+
+      .button {
+        font-family: 'Roboto', sans-serif;
+        border: none;
+        border-radius: 3px;
+        color: white;
+        font-size: 10pt;
+        height: 30px;
+        width: 100px;
+        position: relative;
+      }
+
+      .grey {
+        background: #CECECE;
+      }
+
+      .blue {
+        background: #99befd;
       }
 
       @media (min-width: 768px) {
