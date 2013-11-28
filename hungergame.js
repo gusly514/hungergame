@@ -14,7 +14,6 @@ function initialize() {
       mapOptions);
 
   $("button#settings").on('click', function(){
-    console.log("hej");
     $("div#settings-show").slideToggle();
   });
 
