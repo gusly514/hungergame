@@ -103,6 +103,7 @@
           list-style: none;
       }
       .slot {
+          white-space:nowrap;
           display: none;
           text-align: center;
           top: 63px;
