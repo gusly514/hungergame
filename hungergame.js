@@ -13,6 +13,11 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
+  $("button#settings").on('click', function(){
+    console.log("hej");
+    $("div#settings-show").slideToggle();
+  });
+
   // get location of user
   getLocation();
 }

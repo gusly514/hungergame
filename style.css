@@ -34,6 +34,14 @@
         top: 50%;
         margin: 130px 0 0 -50px;
       }
+      #settings-show {
+        display: none;
+        margin: 5px auto;
+      }
+      .settings-content {
+        margin: 5px 5px 5px 5px;
+      }
+
       @media (min-width: 768px) {
           #content {
           width:50%;
