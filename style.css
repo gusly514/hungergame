@@ -5,6 +5,7 @@
       body {
         margin: 0 0 50px;
         text-align: center;
+        background: url('shattered.png');
       }
       footer {
         position:absolute;
