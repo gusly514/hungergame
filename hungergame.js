@@ -45,6 +45,8 @@ function panMap(latLng) {
     map.setZoom(13);
     // enable go button when location is ready and panned to
     $("#go-button").attr("disabled", false);
+    // hide loading
+    $(".loading-show").removeClass("loading-show");
   }, 500);
 }
 
