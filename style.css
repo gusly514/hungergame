@@ -34,7 +34,16 @@
         border-radius: 4px;
       }
       .settings-content {
-        margin: 5px 5px 5px 5px;
+        margin: 5px;
+      }
+      div#slider {
+        width: 400px;
+        height: 10px !important;
+      }
+      .ui-slider .ui-slider-handle {
+        width: 18px !important;
+        height: 18px !important;
+        cursor: default;
       }
 
       .button {
@@ -114,4 +123,27 @@
         -webkit-transition: 1000ms ease 0ms;
         -moz-transition: 1000ms ease 0ms;
         transition: 1000ms ease 0ms;
+      }
+
+      .loading {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        background: rgba(255, 255, 255, .8);
+        /*background: rgba( 255, 255, 255, .8 ) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;*/
+      }
+
+      .loading-show {
+        display: table;
+      }
+
+      .loading i {
+        font-size: 80pt;
+        display: table-cell;
+        vertical-align: middle;
       }
