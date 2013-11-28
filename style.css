@@ -23,8 +23,7 @@
       }
       #settingAndGo {
         background: white;
-        border-radius: 4px;
-        margin-top: 5px;
+        border-radius: 4px; 
         margin-bottom: 5px;
         padding: 4px;
       }
@@ -83,11 +82,13 @@
       }
 
       #slot-machine {
+        display: none;
         overflow: hidden; /* to hide the magic */  
         height: 21px;
         background: white;
         padding: 22px 10px 22px 10px;
         border-radius: 4px;
+        margin-bottom: 5px;
       }
 
       #slot-marker {
@@ -102,6 +103,7 @@
           list-style: none;
       }
       .slot {
+          display: none;
           text-align: center;
           top: 63px;
           font-size: 18pt;

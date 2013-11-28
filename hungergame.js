@@ -44,6 +44,7 @@ function panMap(latLng) {
     map.setZoom(13);
     // enable go button when location is ready and panned to
     $("#go-button").attr("disabled", false);
+    $("#go-button").on("click", function () { go(); });
     // hide loading
     $(".loading-show").removeClass("loading-show");
   }, 500);
@@ -69,16 +70,25 @@ function populateSlot(results, status) {
       $('.slot').append('<li>' + allRestaurants[i].name + '</li>');
     }
   }
+}
 
-  // init slot
-  initSlotMachine();
+function go() {
+  $("div#slot-machine").slideToggle(400, function () {
+    // show list
+    $(".slot").show();
+    // init slot machine
+    initSlotMachine();
+    // trigger click on start-button to start slot machine
+    $("#start-button" ).trigger( "click" );
+  });
+  
 }
 
 function initSlotMachine() {
   $('.slot').jSlots({
     number : 1,          // Number: number of slots
     winnerNumber : 1,    // Number or Array: list item number(s) upon which to trigger a win, 1-based index, NOT ZERO-BASED
-    spinner : '#go-button',        // CSS Selector: element to bind the start event to
+    spinner : '#start-button',        // CSS Selector: element to bind the start event to
     spinEvent : 'click', // String: event to start slots on this event
     onStart : function () {
       // add blurred effect on list items
@@ -87,9 +97,10 @@ function initSlotMachine() {
         // remove blurred effect after 5 seconds
         $('.slot li').removeClass("blurred-text").addClass("sharpened-text");
       }, 3000);
-
       // disable go-button
       $("#go-button").attr("disabled", true);
+      // hide buttons field
+      $("div#settingAndGo").slideToggle();
     },    // Function: runs on spin start,
     onEnd : function(finalNumbers) { // Function: run on spin end. It is passed (finalNumbers:Array). finalNumbers gives the index of the li each slot stopped on in order.
       // show restaurant on map
