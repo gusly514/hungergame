@@ -65,10 +65,8 @@
 
       #slot-machine {
         overflow: hidden; /* to hide the magic */  
-        display: inline-block;
         height: 21px;
         background: white;
-        width: auto;
         padding: 22px 10px 22px 10px;
         border-radius: 4px;
       }
@@ -85,7 +83,6 @@
           list-style: none;
       }
       .slot {
-          float: left;
           text-align: center;
           top: 63px;
           font-size: 12pt;
