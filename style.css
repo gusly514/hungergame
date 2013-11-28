@@ -54,9 +54,18 @@
       #slot-machine {
         overflow: hidden; /* to hide the magic */  
         display: inline-block;
-        height: 17px;
-        width: 100%;
+        height: 21px;
+        background: white;
+        width: auto;
+        padding: 22px 10px 22px 10px;
       }
+
+      #slot-marker {
+        width: 100%;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.05);
+      }
+
       ul {
           padding: 0;
           margin: 0;
@@ -64,6 +73,13 @@
       }
       .slot {
           float: left;
+          text-align: center;
+          top: 63px;
+          font-size: 12pt;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 300;
+          min-width: 220px;
+          margin-top: -21px;
       }
       .blurred-text {
         text-shadow: 0 0 3px rgba(0,0,0,0.5);

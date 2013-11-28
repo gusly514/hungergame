@@ -81,6 +81,7 @@ function initSlotMachine() {
         // remove blurred effect after 5 seconds
         $('.slot li').removeClass("blurred-text").addClass("sharpened-text");
       }, 3000);
+
       // disable go-button
       $("#go-button").attr("disabled", true);
     },    // Function: runs on spin start,
