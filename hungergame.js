@@ -133,10 +133,15 @@ function showRestaurantOnMap(restaurant) {
   // pan to marker
   map.panTo(restaurant.geometry.location);
 
+  // tvungen att lägga infowindow-content i en variabel
+  // för att size ska funka bra
+  var $content = $("<div>"+restaurant.name+"</div>");
+
   // create infowindow
   var infowindow = new google.maps.InfoWindow({
-        content: restaurant.name
-    });
+        content: $content[0],
+        maxWidth: 200
+  });
 
   // show info window
   infowindow.open(map,marker);
