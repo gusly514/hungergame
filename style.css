@@ -23,8 +23,7 @@
       }
       #settingAndGo {
         background: white;
-        border-radius: 4px;
-        margin-top: 5px;
+        border-radius: 4px; 
         margin-bottom: 5px;
         padding: 4px;
       }
@@ -83,11 +82,13 @@
       }
 
       #slot-machine {
+        display: none;
         overflow: hidden; /* to hide the magic */  
         height: 21px;
         background: white;
         padding: 22px 10px 22px 10px;
         border-radius: 4px;
+        margin-bottom: 5px;
       }
 
       #slot-marker {
@@ -102,13 +103,15 @@
           list-style: none;
       }
       .slot {
+          white-space:nowrap;
+          display: none;
           text-align: center;
           top: 63px;
-          font-size: 12pt;
+          font-size: 18pt;
           font-family: 'Roboto', sans-serif;
           font-weight: 300;
           min-width: 220px;
-          margin-top: -21px;
+          margin-top: -2px;
       }
       .blurred-text {
         text-shadow: 0 0 3px rgba(0,0,0,0.5);
