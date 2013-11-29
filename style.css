@@ -33,10 +33,10 @@
         border-radius: 4px;
       }
       .settings-content {
-        margin: 5px;
+        margin: 15px;
       }
-      div#slider {
-        width: 400px;
+      .slider {
+        width: 50%;
         height: 10px !important;
       }
       .ui-slider .ui-slider-handle {
