@@ -14,9 +14,9 @@ function initialize() {
       mapOptions);
 
   $("button#settings").on('click', function(){
-    console.log("hej");
     $("div#settings-show").slideToggle();
   });
+
 
   // get location of user
   getLocation();
@@ -49,6 +49,8 @@ function panMap(latLng) {
     $(".loading-show").removeClass("loading-show");
   }, 500);
 }
+
+
 
 function nearbySearch(latLng) {
   var request = {
