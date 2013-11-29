@@ -77,6 +77,7 @@
           width:90%;
           margin: 0 auto;
           text-align: left;
+          padding: 1em;
           
         }
       }
@@ -84,9 +85,8 @@
       #slot-machine {
         display: none;
         overflow: hidden; /* to hide the magic */  
-        height: 21px;
+        height: 29px;
         background: white;
-        padding: 22px 10px 22px 10px;
         border-radius: 4px;
         margin-bottom: 5px;
       }

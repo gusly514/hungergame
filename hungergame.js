@@ -1,10 +1,34 @@
 var map;
 var allRestaurants;
 
+var supports = (function() {  
+   var div = document.createElement('div'),  
+      vendors = 'Khtml Ms O Moz Webkit'.split(' '),  
+      len = vendors.length;  
+  
+   return function(prop) {  
+      if ( prop in div.style ) return true;  
+  
+      prop = prop.replace(/^[a-z]/, function(val) {  
+         return val.toUpperCase();  
+      });  
+  
+      while(len--) {  
+         if ( vendors[len] + prop in div.style ) {  
+            // browser supports box-shadow. Do what you need.  
+            // Or use a bang (!) to test if the browser doesn't.  
+            return true;  
+         }   
+      }  
+      return false;  
+   }; 
+})();  
+
 // initialize after window load
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {
+
   // init map
   var mapOptions = {
     zoom: 2,
@@ -26,6 +50,10 @@ function getLocation() {
   if (navigator.geolocation)
     {
         navigator.geolocation.getCurrentPosition(activateSlot)
+    }
+    else
+    {
+      console.log('navigator.geolocation is false')
     }
 }
 
@@ -73,7 +101,11 @@ function populateSlot(results, status) {
 }
 
 function go() {
-  $("div#slot-machine").slideToggle(400, function () {
+
+//Check if the browser supports CSS3
+  if ( supports('textShadow') ) {
+
+    $("div#slot-machine").slideToggle(400, function () {
     // show list
     $(".slot").show();
     // init slot machine
@@ -81,6 +113,10 @@ function go() {
     // trigger click on start-button to start slot machine
     $("#start-button" ).trigger( "click" );
   });
+  }
+  else {
+    $("div#noSupport").show(); 
+  }
   
 }
 
