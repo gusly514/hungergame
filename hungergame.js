@@ -105,7 +105,7 @@ function populateSlot(results, status) {
 function go() {
 
 //Check if the browser supports CSS3
-  if ( !supports('textShadow') ) {
+  if ( supports('textShadow') ) {
 
     $("div#slot-machine").slideToggle(400, function () {
     // show list
