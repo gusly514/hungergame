@@ -105,7 +105,7 @@ function populateSlot(results, status) {
 function go() {
 
 //Check if the browser supports CSS3
-  if ( supports('textShadow') ) {
+  if ( !supports('textShadow') ) {
 
     $("div#slot-machine").slideToggle(400, function () {
     // show list
@@ -123,6 +123,12 @@ function go() {
     $('div#slot-machine').show()
     $("p#noSupportResult").text(allRestaurants[winnerPosition].name)
     $("p#noSupportResult").show()
+
+    $("#go-button").attr("disabled", true)
+    $("div#settingAndGo").slideToggle()
+
+    showRestaurantOnMap(allRestaurants[winnerPosition]);
+
   }
   
 }
