@@ -113,6 +113,17 @@
           min-width: 220px;
           margin-top: -2px;
       }
+      p#noSupportResult {
+          white-space:nowrap;
+          display: none;
+          text-align: center;
+          top: 63px;
+          font-size: 18pt;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 300;
+          min-width: 220px;
+          margin-top: -2px;
+      }
       .blurred-text {
         text-shadow: 0 0 3px rgba(0,0,0,0.5);
         color: transparent;
@@ -149,4 +160,8 @@
         font-size: 80pt;
         display: table-cell;
         vertical-align: middle;
+      }
+
+      .gm-style-iw {
+        white-space: nowrap;
       }

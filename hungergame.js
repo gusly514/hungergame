@@ -79,7 +79,6 @@ function panMap(latLng) {
 }
 
 
-
 function nearbySearch(latLng) {
   var request = {
     location: latLng,
@@ -117,7 +116,18 @@ function go() {
   });
   }
   else {
-    $("div#noSupport").show(); 
+    var winnerPosition = Math.floor(Math.random() * allRestaurants.length);
+    console.log(winnerPosition)
+
+    $('div#slot-machine').show()
+    $("p#noSupportResult").text(allRestaurants[winnerPosition].name)
+    $("p#noSupportResult").show()
+
+    $("#go-button").attr("disabled", true)
+    $("div#settingAndGo").slideToggle()
+
+    showRestaurantOnMap(allRestaurants[winnerPosition]);
+
   }
   
 }
@@ -177,8 +187,7 @@ function showRestaurantOnMap(restaurant) {
 
   // create infowindow
   var infowindow = new google.maps.InfoWindow({
-        content: $content[0],
-        maxWidth: 200
+        content: $content[0]
   });
 
   // show info window
