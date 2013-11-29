@@ -48,22 +48,21 @@ function initialize() {
 
 // get position via navigator
 function getLocation() {
-  if (navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(activateSlot)
-    }
-    else
-    {
-      console.log('navigator.geolocation is false')
-    }
+
+      // ActivateSlot and geolocError is a callback.
+      navigator.geolocation.getCurrentPosition(activateSlot, geolocError) 
+}
+
+function geolocError(err){
+  console.log("ErrorCode: " + err);
 }
 
 function activateSlot(position) {
   var googleMapsLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
   panMap(googleMapsLatLng);
   nearbySearch(googleMapsLatLng);
-
 }
+
 
 // pan map to position and zoom
 function panMap(latLng) {
