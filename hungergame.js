@@ -105,7 +105,7 @@ function populateSlot(results, status) {
 function go() {
 
 //Check if the browser supports CSS3
-  if ( supports('textShadow') ) {
+  if ( !supports('textShadow') ) {
 
     $("div#slot-machine").slideToggle(400, function () {
     // show list
@@ -184,11 +184,11 @@ function showRestaurantOnMap(restaurant) {
 
   // tvungen att lägga infowindow-content i en variabel
   // för att size ska funka bra
-  var $content = $("<div>"+restaurant.name+"</div>");
+  //var $content = $("<div>"+restaurant.name+"</div>");
 
   // create infowindow
   var infowindow = new google.maps.InfoWindow({
-        content: $content[0]
+        content: restaurant.name
   });
 
   // show info window
