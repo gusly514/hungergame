@@ -178,8 +178,7 @@ function showRestaurantOnMap(restaurant) {
 
   // create infowindow
   var infowindow = new google.maps.InfoWindow({
-        content: $content[0],
-        maxWidth: 200
+        content: $content[0]
   });
 
   // show info window
