@@ -68,22 +68,21 @@ function getLongLatFromAdress(address)
 
 // get position via navigator
 function getLocation() {
-  if (navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(activateSlot)
-    }
-    else
-    {
-      console.log('navigator.geolocation is false')
-    }
+
+      // ActivateSlot and geolocError is a callback.
+      navigator.geolocation.getCurrentPosition(activateSlot, geolocError) 
+}
+
+function geolocError(err){
+  console.log("ErrorCode: " + err);
 }
 
 function activateSlot(position) {
   var googleMapsLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
   panMap(googleMapsLatLng);
   nearbySearch(googleMapsLatLng);
-
 }
+
 
 // pan map to position and zoom
 function panMap(latLng) {
@@ -125,7 +124,7 @@ function populateSlot(results, status) {
 function go() {
 
 //Check if the browser supports CSS3
-  if ( supports('textShadow') ) {
+  if (supports('textShadow') ) {
 
     $("div#slot-machine").slideToggle(400, function () {
     // show list
@@ -204,12 +203,11 @@ function showRestaurantOnMap(restaurant) {
 
   // tvungen att lägga infowindow-content i en variabel
   // för att size ska funka bra
-  var $content = $("<div>"+restaurant.name+"</div>");
+  //var $content = $("<div>"+restaurant.name+"</div>");
 
   // create infowindow
   var infowindow = new google.maps.InfoWindow({
-        content: $content[0],
-        maxWidth: 200
+        content: restaurant.name
   });
 
   // show info window

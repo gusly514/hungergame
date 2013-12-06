@@ -161,3 +161,7 @@
         display: table-cell;
         vertical-align: middle;
       }
+
+      .gm-style-iw {
+        white-space: nowrap;
+      }
