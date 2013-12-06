@@ -46,12 +46,16 @@ function initialize() {
   directionsDisplay.setMap(map);
   $("button#settings").on('click', function(){
     $("div#settings-show").slideToggle();
+
+      
+
   });
 
 
   // get location of user
   getLocation();
 }
+
 
 function calcRoute() {
   var selectedMode = 'WALKING';
@@ -70,6 +74,23 @@ function calcRoute() {
       console.log(status);
     }
   });
+};
+//Get Long and Lat from user input without using GPS
+function getLongLatFromAdress(address)
+{
+
+  var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( {'address':address}, function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          console.log("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng())
+        }
+        else {
+          console.log('Failed to search by adress. Status: ' + status);
+        }
+    });
+
+
+
 }
 
 // get position via navigator
@@ -101,8 +122,6 @@ function panMap(latLng) {
     // enable go button when location is ready and panned to
     $("#go-button").attr("disabled", false);
     $("#go-button").on("click", function () { go(); });
-    // hide loading
-    $(".loading-show").removeClass("loading-show");
   }, 500);
 }
 
@@ -133,7 +152,7 @@ function populateSlot(results, status) {
 function go() {
 
 //Check if the browser supports CSS3
-  if ( supports('textShadow') ) {
+  if (supports('textShadow') ) {
 
     $("div#slot-machine").slideToggle(400, function () {
     // show list
@@ -218,11 +237,11 @@ function showRestaurantOnMap(restaurant) {
 
   // tvungen att lägga infowindow-content i en variabel
   // för att size ska funka bra
-  var $content = $("<div>"+restaurant.name+"</div>");
+  //var $content = $("<div>"+restaurant.name+"</div>");
 
   // create infowindow
   var infowindow = new google.maps.InfoWindow({
-        content: $content[0]
+        content: restaurant.name
   });
 
   // show info window
