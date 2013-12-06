@@ -22,7 +22,7 @@ var supports = (function() {
       }  
       return false;  
    }; 
-})();  
+})();
 
 // initialize after window load
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -39,11 +39,20 @@ function initialize() {
 
   $("button#settings").on('click', function(){
     $("div#settings-show").slideToggle();
-
-      
-
   });
 
+document.getElementById('address').addEventListener("keyup", function(){
+
+if(this.value.length != 0)
+{
+  $('#go-button').attr("disabled", false);
+}
+else
+  {
+    $('#go-button').attr("disabled", true);
+  }
+
+}, false);
 
   // get location of user
   getLocation();
@@ -91,6 +100,7 @@ function panMap(latLng) {
   setTimeout(function () {
     map.setZoom(13);
     // enable go button when location is ready and panned to
+    $('#address').attr("disabled", true);
     $("#go-button").attr("disabled", false);
     $("#go-button").on("click", function () { go(); });
   }, 500);
