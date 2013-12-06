@@ -39,11 +39,31 @@ function initialize() {
 
   $("button#settings").on('click', function(){
     $("div#settings-show").slideToggle();
+
+      
+
   });
 
 
   // get location of user
   getLocation();
+}
+
+//Get Long and Lat from user input without using GPS
+function getLongLatFromAdress(address)
+{
+
+  var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( {'address':address}, function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          console.log("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng())
+        }
+        else {
+          console.log('Failed to search by adress. Status: ' + status);
+        }
+    });
+
+
 }
 
 // get position via navigator
