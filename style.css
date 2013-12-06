@@ -31,13 +31,16 @@
         display: none;
         margin: 5px auto;
         border-radius: 4px;
+        padding: 10px;
       }
       .settings-content {
-        margin: 15px;
+        margin-top: 10px;
+        margin-bottom: 5px;
       }
       .slider {
-        width: 50%;
+        width: 331px;
         height: 10px !important;
+        margin-bottom: 20px;
       }
       .ui-slider .ui-slider-handle {
         width: 18px !important;
@@ -78,7 +81,9 @@
           margin: 0 auto;
           text-align: left;
           padding: 1em;
-          
+        }
+        .slider {
+          width:100%;
         }
       }
 

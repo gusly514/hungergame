@@ -1,5 +1,9 @@
 var map;
 var allRestaurants;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var orgn;
+var dest;
 
 var supports = (function() {  
    var div = document.createElement('div'),  
@@ -34,9 +38,12 @@ function initialize() {
     zoom: 2,
     center: new google.maps.LatLng(40, 10)
   };
+
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
+  directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+  directionsDisplay.setMap(map);
   $("button#settings").on('click', function(){
     $("div#settings-show").slideToggle();
   });
@@ -44,6 +51,25 @@ function initialize() {
 
   // get location of user
   getLocation();
+}
+
+function calcRoute() {
+  var selectedMode = 'WALKING';
+  var request = {
+      origin: orgn,
+      destination: dest,
+      // Note that Javascript allows us to access the constant
+      // using square brackets and a string value as its
+      // "property."
+      travelMode: google.maps.TravelMode[selectedMode]
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      console.log(status);
+    }
+  });
 }
 
 // get position via navigator
@@ -59,10 +85,12 @@ function geolocError(err){
 
 function activateSlot(position) {
   var googleMapsLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+  console.log("origin: " + googleMapsLatLng);
+
+  orgn = googleMapsLatLng;
   panMap(googleMapsLatLng);
   nearbySearch(googleMapsLatLng);
 }
-
 
 // pan map to position and zoom
 function panMap(latLng) {
@@ -91,6 +119,7 @@ function nearbySearch(latLng) {
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, populateSlot);
 }
+
 
 function populateSlot(results, status) {
   allRestaurants = results;
@@ -152,7 +181,10 @@ function initSlotMachine() {
     },    // Function: runs on spin start,
     onEnd : function(finalNumbers) { // Function: run on spin end. It is passed (finalNumbers:Array). finalNumbers gives the index of the li each slot stopped on in order.
       // show restaurant on map
+      
       showRestaurantOnMap(allRestaurants[finalNumbers[0]-1]);
+      calcRoute();
+      
     },      
     onWin : $.noop,      // Function: run on winning number. It is passed (winCount:Number, winners:Array, finalNumbers:Array)
     easing : 'easeOutCirc',    // String: easing type for final spin. I recommend the easing plugin and easeOutSine, or an easeOut of your choice.
@@ -178,6 +210,9 @@ function showRestaurantOnMap(restaurant) {
     //icon: photo
   });
 
+  // sets the destination of the route
+  dest = new google.maps.LatLng(restaurant.geometry.location.pb,restaurant.geometry.location.qb);
+  
   // pan to marker
   map.panTo(restaurant.geometry.location);
 
