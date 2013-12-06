@@ -102,37 +102,85 @@ function populateSlot(results, status) {
 }
 
 function go() {
-
-//Check if the browser supports CSS3
-  if (supports('textShadow') ) {
+  var winner = allRestaurants[Math.floor(Math.random() * allRestaurants.length)];
+  console.log(supports('textShadow'));
+  //Check if the browser supports CSS3
+  if (supports('textShadow')) {
 
     $("div#slot-machine").slideToggle(400, function () {
-    // show list
-    $(".slot").show();
-    // init slot machine
-    initSlotMachine();
-    // trigger click on start-button to start slot machine
-    $("#start-button" ).trigger( "click" );
-  });
+      // show list
+      $(".slot").show();
+
+      // run animation
+      runSlotMachine(winner, 4, 500, function () {
+        showRestaurantOnMap(winner);
+      });
+    });
   }
   else {
-    var winnerPosition = Math.floor(Math.random() * allRestaurants.length);
-    console.log(winnerPosition)
+    $('div#slot-machine').show();
+    $("p#noSupportResult").text(winner.name);
+    $("p#noSupportResult").sho();
 
-    $('div#slot-machine').show()
-    $("p#noSupportResult").text(allRestaurants[winnerPosition].name)
-    $("p#noSupportResult").show()
+    $("#go-button").attr("disabled", true);
+    $("div#settingAndGo").slideToggle();
 
-    $("#go-button").attr("disabled", true)
-    $("div#settingAndGo").slideToggle()
-
-    showRestaurantOnMap(allRestaurants[winnerPosition]);
-
-  }
-  
+    showRestaurantOnMap(winner);
+  }  
 }
 
-function initSlotMachine() {
+function runSlotMachine(winner, laps, laptime, callback) {    
+  animateList(winner, 1, laps, laptime, callback);
+}
+
+// OBS! Denna laggar tyvärr...
+function animateList(winner, lap, laps, laptime, callback) {
+  // randomize order of list
+  $('.slot').randomize();
+  var easing = "linear";
+  if (lap == laps) {
+    laptime = 2500;
+    easing = "easeOutSine";
+  }
+  if (lap <= laps) {
+    // place slot above field
+    $('.slot').css("margin-top", 5 - $('.slot').height()+"px");
+  }
+  // animate
+  $(".slot").animate({marginTop:"40px"}, laptime, easing, function(){
+      lap++;
+      if (lap < laps) {
+        animateList(winner, lap, laps, laptime, callback);
+      }
+      else if (lap == laps) {
+        // different easing and laptime here
+        animateList(winner, lap, laps, laptime, callback);
+      }
+      else if (lap > laps) {
+        $('#winningRestaurant').text(winner.name);
+        $('#winningRestaurant').css("margin-top", "-30px");
+        $('#winningRestaurant').show();
+        $("#winningRestaurant").animate({marginTop:"0px"}, 1000, "easeOutCirc", function () {
+          callback();
+        });
+      }
+  });
+}
+
+$.fn.randomize = function(selector){
+    var $elems = selector ? $(this).find(selector) : $(this).children(),
+        $parents = $elems.parent();
+
+    $parents.each(function(){
+        $(this).children(selector).sort(function(){
+            return Math.round(Math.random()) - 0.5;
+        }).remove().appendTo(this);
+    });
+
+    return this;
+};
+
+/*function initSlotMachine() {
   $('.slot').jSlots({
     number : 1,          // Number: number of slots
     winnerNumber : 1,    // Number or Array: list item number(s) upon which to trigger a win, 1-based index, NOT ZERO-BASED
@@ -159,7 +207,7 @@ function initSlotMachine() {
     time : 7000,         // Number: total time of spin animation
     loops : 6            // Number: times it will spin during the animation
   });
-}
+}*/
 
 function showRestaurantOnMap(restaurant) {
   var photo = null;

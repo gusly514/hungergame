@@ -85,10 +85,11 @@
       #slot-machine {
         display: none;
         overflow: hidden; /* to hide the magic */  
-        height: 29px;
+        height: 32px;
         background: white;
         border-radius: 4px;
         margin-bottom: 5px;
+        text-align: center;
       }
 
       #slot-marker {
@@ -113,16 +114,17 @@
           min-width: 220px;
           margin-top: -2px;
       }
-      p#noSupportResult {
+      .slot li {
+        margin-top: 20px;
+      }
+      p#noSupportResult, p#winningRestaurant {
           white-space:nowrap;
           display: none;
           text-align: center;
-          top: 63px;
           font-size: 18pt;
           font-family: 'Roboto', sans-serif;
           font-weight: 300;
-          min-width: 220px;
-          margin-top: -2px;
+          margin-top: 0px;
       }
       .blurred-text {
         text-shadow: 0 0 3px rgba(0,0,0,0.5);
