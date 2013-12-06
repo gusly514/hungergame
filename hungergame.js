@@ -1,5 +1,9 @@
 var map;
 var allRestaurants;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var orgn;
+var dest;
 
 var supports = (function() {  
    var div = document.createElement('div'),  
@@ -22,7 +26,7 @@ var supports = (function() {
       }  
       return false;  
    }; 
-})();  
+})();
 
 // initialize after window load
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -34,16 +38,68 @@ function initialize() {
     zoom: 2,
     center: new google.maps.LatLng(40, 10)
   };
+
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
+  directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+  directionsDisplay.setMap(map);
   $("button#settings").on('click', function(){
     $("div#settings-show").slideToggle();
   });
 
+document.getElementById('address').addEventListener("keyup", function(){
+
+if(this.value.length != 0)
+{
+  $('#go-button').attr("disabled", false);
+}
+else
+  {
+    $('#go-button').attr("disabled", true);
+  }
+
+}, false);
 
   // get location of user
   getLocation();
+}
+
+
+function calcRoute() {
+  var selectedMode = 'WALKING';
+  var request = {
+      origin: orgn,
+      destination: dest,
+      // Note that Javascript allows us to access the constant
+      // using square brackets and a string value as its
+      // "property."
+      travelMode: google.maps.TravelMode[selectedMode]
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      console.log(status);
+    }
+  });
+};
+//Get Long and Lat from user input without using GPS
+function getLongLatFromAdress(address)
+{
+
+  var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( {'address':address}, function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          console.log("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng())
+        }
+        else {
+          console.log('Failed to search by adress. Status: ' + status);
+        }
+    });
+
+
+
 }
 
 // get position via navigator
@@ -59,10 +115,12 @@ function geolocError(err){
 
 function activateSlot(position) {
   var googleMapsLatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+  console.log("origin: " + googleMapsLatLng);
+
+  orgn = googleMapsLatLng;
   panMap(googleMapsLatLng);
   nearbySearch(googleMapsLatLng);
 }
-
 
 // pan map to position and zoom
 function panMap(latLng) {
@@ -71,10 +129,9 @@ function panMap(latLng) {
   setTimeout(function () {
     map.setZoom(13);
     // enable go button when location is ready and panned to
+    $('#address').attr("disabled", true);
     $("#go-button").attr("disabled", false);
     $("#go-button").on("click", function () { go(); });
-    // hide loading
-    $(".loading-show").removeClass("loading-show");
   }, 500);
 }
 
@@ -91,6 +148,7 @@ function nearbySearch(latLng) {
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, populateSlot);
 }
+
 
 function populateSlot(results, status) {
   allRestaurants = results;
@@ -200,7 +258,10 @@ $.fn.randomize = function(selector){
     },    // Function: runs on spin start,
     onEnd : function(finalNumbers) { // Function: run on spin end. It is passed (finalNumbers:Array). finalNumbers gives the index of the li each slot stopped on in order.
       // show restaurant on map
+      
       showRestaurantOnMap(allRestaurants[finalNumbers[0]-1]);
+      calcRoute();
+      
     },      
     onWin : $.noop,      // Function: run on winning number. It is passed (winCount:Number, winners:Array, finalNumbers:Array)
     easing : 'easeOutCirc',    // String: easing type for final spin. I recommend the easing plugin and easeOutSine, or an easeOut of your choice.
@@ -226,6 +287,9 @@ function showRestaurantOnMap(restaurant) {
     //icon: photo
   });
 
+  // sets the destination of the route
+  dest = new google.maps.LatLng(restaurant.geometry.location.pb,restaurant.geometry.location.qb);
+  
   // pan to marker
   map.panTo(restaurant.geometry.location);
 
