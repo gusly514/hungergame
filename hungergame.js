@@ -93,8 +93,6 @@ function panMap(latLng) {
     // enable go button when location is ready and panned to
     $("#go-button").attr("disabled", false);
     $("#go-button").on("click", function () { go(); });
-    // hide loading
-    $(".loading-show").removeClass("loading-show");
   }, 500);
 }
 
